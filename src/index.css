@@ -1,13 +1,178 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-areas: "header" "main" "footer";
+  height: 100vh;
+}
+.aside {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  position: fixed;
+  overflow-y: auto;
+  z-index: 2;
+  transform: translateX(-245px);
+  transition: all 0.4s ease;
+  height: 100%;
+}
+
+.aside.active {
+  transform: translateX(0);
+}
+
+.main .main-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 500px 200px 300px;
+  grid-template-areas: "card1" "card2" "card3";
+  grid-gap: 10px;
+  margin: 10px;
+}
+
+.menu-icon {
+  position: fixed;
+  display: flex;
+  top: 2px;
+  left: 8px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+  color: black;
+}
+
+.aside-close-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.header {
+  grid-area: header;
+  background-color: whitesmoke;
+}
+
+.aside {
+  grid-area: aside;
+  background-color: darkblue;
+}
+
+.main {
+  grid-area: main;
+  background-color: white;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: whitesmoke;
+}
+
+.header,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: darkblue;
+  padding: 0 15px;
+}
+
+.aside > ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 85px;
+}
+
+.aside > ul li {
+  padding: 20px 20px 20px 40px;
+  color: #ddd;
+  float: left;
+  overflow-y: auto;
+}
+
+.main .main-overview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  border-bottom: 1px solid lightgreen;
+}
+
+.main .main-overview .overview-card {
+  display: flex;
+  flex-basis: 240px;
+  flex-grow: 1;
+  margin: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 100px;
+  border: 1px solid darkblue;
+  border-radius: 4px;
+  color: darkblue;
+}
+
+.main .main-cards .card {
+  padding: 20px;
+  border: 1px solid tomato;
+  border-radius: 4px;
+  color: tomato;
+}
+
+.main .card:first-child {
+  grid-area: card1;
+}
+
+.main .card:nth-child(2) {
+  grid-area: card2;
+}
+
+.main .card:nth-child(3) {
+  grid-area: card3;
+}
+
+@media only screen and (min-width: 750px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    grid-template-areas: "aside header" "aside main" "aside footer";
+    height: 100vh;
+  }
+
+  .main .main-cards {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 200px 300px;
+    grid-template-areas: "card1 card2" "card1 card3";
+    grid-gap: 20px;
+    margin: 10px;
+  }
+
+  .aside {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateX(0);
+    height: 100%;
+  }
+
+  .aside-close-icon {
+    display: none;
+  }
 }
